@@ -1,12 +1,14 @@
 <template>
   <Header></Header>
+  <CharList></CharList>
 </template>
 
 <script>
 import Header from "./components/Header/Header";
+import CharList from "./components/Body/CharList";
 export default {
   name: "App",
-  components: { Header },
+  components: { CharList, Header },
 };
 </script>
 
@@ -22,5 +24,12 @@ export default {
 a {
   text-decoration: none;
   color: white !important;
+}
+body {
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 </style>

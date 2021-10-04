@@ -5,15 +5,12 @@
       src="../../assets/logoName.png"
       alt="Rick and Morty Logo"
     />
-    <Nav></Nav>
   </header>
 </template>
 
 <script>
-import Nav from "./Nav";
 export default {
   name: "Header",
-  components: { Nav },
 };
 </script>
 
