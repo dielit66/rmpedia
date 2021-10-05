@@ -20,7 +20,9 @@
         </div>
       </div>
     </div>
-    <button class="load-more_button">Ещё</button>
+    <button v-if="page !== 34" @click="loadMore" class="load-more_button">
+      Ещё
+    </button>
   </main>
 </template>
 
@@ -32,7 +34,8 @@ export default {
   data() {
     return {
       search: "",
-      characters: null,
+      characters: [],
+      page: 1,
     };
   },
   beforeMount() {
@@ -44,13 +47,20 @@ export default {
         .get("https://rickandmortyapi.com/api/character/")
         .then((response) => (this.characters = response.data.results));
     },
+    loadMore() {
+      this.page++;
+      axios
+
+        .get("https://rickandmortyapi.com/api/character/?page=" + this.page)
+        .then((response) => this.characters.push(...response.data.results));
+      console.log(this.characters);
+    },
   },
   computed: {
     searchCharacter() {
-      return this.characters.filter(
-        (item) =>
-          item.name.toLowerCase().indexOf(this.search.toLowerCase()) !== -1
-      );
+      return this.characters.filter((character) => {
+        return character.name.toLowerCase().includes(this.search.toLowerCase());
+      });
     },
   },
 };
@@ -116,5 +126,16 @@ main input {
   justify-content: space-evenly;
   font-size: 16px;
   padding-bottom: 16px;
+}
+.load-more_button {
+  cursor: pointer;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 48px;
+  width: 10%;
+  border-radius: 8px;
+  font-size: 20px;
+  border: solid 4px rgba(0, 227, 255, 0.68);
+  outline: solid 1px rgba(219, 218, 218, 0.56);
 }
 </style>
