@@ -1,10 +1,10 @@
 <template>
   <main>
-    <input type="text" placeholder="Поиск..." />
+    <input type="text" placeholder="Поиск..." v-model="search" />
     <div class="all-characters">
       <div
         class="character_card"
-        v-for="character in characters"
+        v-for="character in searchCharacter"
         :key="character.id"
       >
         <div class="character_info">
@@ -20,6 +20,7 @@
         </div>
       </div>
     </div>
+    <button class="load-more_button">Ещё</button>
   </main>
 </template>
 
@@ -30,13 +31,27 @@ export default {
   name: "CharList",
   data() {
     return {
-      characters: [],
+      search: "",
+      characters: null,
     };
   },
-  mounted() {
-    axios
-      .get("https://rickandmortyapi.com/api/character/")
-      .then((response) => (this.characters = response.data.results));
+  beforeMount() {
+    this.getTodos();
+  },
+  methods: {
+    getTodos() {
+      axios
+        .get("https://rickandmortyapi.com/api/character/")
+        .then((response) => (this.characters = response.data.results));
+    },
+  },
+  computed: {
+    searchCharacter() {
+      return this.characters.filter(
+        (item) =>
+          item.name.toLowerCase().indexOf(this.search.toLowerCase()) !== -1
+      );
+    },
   },
 };
 </script>
