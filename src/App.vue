@@ -23,7 +23,7 @@ export default {
 }
 a {
   text-decoration: none;
-  color: white !important;
+  color: black !important;
 }
 body {
   max-width: 1170px;
