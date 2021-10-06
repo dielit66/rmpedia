@@ -1,6 +1,14 @@
 <template>
   <main>
-    <input type="text" placeholder="Поиск..." v-model="search" />
+    <div class="search-form">
+      <input type="text" placeholder="Поиск..." v-model="search" />
+      <select name="" id="">
+        <option value="" disabled selected>Select yout option</option>
+        <option value="">alive</option>
+        <option value="">dead</option>
+        <option value="">unknown</option>
+      </select>
+    </div>
     <div class="all-characters">
       <div
         class="character_card"
@@ -16,6 +24,7 @@
             <span>{{ character.gender }}</span>
             <span>{{ character.status }}</span>
             <span>{{ character.species }}</span>
+            <span>{{ character.episode }}</span>
           </div>
         </div>
       </div>
@@ -72,10 +81,25 @@ main {
   flex-direction: column;
   align-items: center;
 }
-main input {
+.search-form {
+  display: flex;
   margin-top: 18px;
-  height: 48px;
   width: 96%;
+}
+.search-form select {
+  border: solid 4px rgba(0, 227, 255, 0.68);
+  outline: solid 1px rgba(219, 218, 218, 0.56);
+  font-size: 20px;
+  height: 48px;
+  border-radius: 8px;
+  width: 20%;
+}
+
+.search-form input {
+  margin-right: 2%;
+  height: 48px;
+  width: 78%;
+
   border-radius: 8px;
   font-size: 20px;
   border: solid 4px rgba(0, 227, 255, 0.68);
