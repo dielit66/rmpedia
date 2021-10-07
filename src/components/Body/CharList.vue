@@ -18,11 +18,11 @@
         <div class="character_info">
           <img class="character_image" :src="character.image" alt="" />
           <div class="character_name">
-            <router-link to="/character">{{ character.name }}</router-link>
+            <router-link :to="{ path: '/character'+ '/'+ character.id}">{{ character.name }}</router-link>
           </div>
 
           <div class="character_add-info">
-            <span>{{ character.gender }}</span>
+            <span> {{ character.gender }}</span>
             <span>{{ character.status }}</span>
             <span>{{ character.species }}</span>
           </div>
@@ -92,7 +92,6 @@ main {
 }
 .search-form select {
   border: solid 4px rgba(0, 227, 255, 0.68);
-  outline: solid 1px rgba(219, 218, 218, 0.56);
   font-size: 20px;
   height: 48px;
   border-radius: 8px;
@@ -103,11 +102,9 @@ main {
   margin-right: 2%;
   height: 48px;
   width: 78%;
-
   border-radius: 8px;
   font-size: 20px;
   border: solid 4px rgba(0, 227, 255, 0.68);
-  outline: solid 1px rgba(219, 218, 218, 0.56);
   text-indent: 10px;
 }
 .all-characters {
@@ -154,6 +151,7 @@ main {
   justify-content: space-evenly;
   font-size: 16px;
   padding-bottom: 16px;
+  align-items: center;
 }
 .load-more_button {
   cursor: pointer;
@@ -164,6 +162,6 @@ main {
   border-radius: 8px;
   font-size: 20px;
   border: solid 4px rgba(0, 227, 255, 0.68);
-  outline: solid 1px rgba(219, 218, 218, 0.56);
+
 }
 </style>
