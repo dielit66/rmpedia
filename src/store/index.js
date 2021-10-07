@@ -1,5 +1,8 @@
 import { createStore } from "vuex";
 import axios from "axios";
+import createPersistedState from "vuex-persistedstate"
+
+
 
 export default createStore({
   state: {
@@ -41,4 +44,15 @@ export default createStore({
       return state.characters;
     },
   },
+
+  plugins: [createPersistedState({
+        storage: window.sessionStorage,
+    reducer(val) {
+      return {
+        // Сохраняем только AssessmentData в состоянии
+        characters: val.characters
+      }
+
+    },}
+  )]
 });
