@@ -49,7 +49,7 @@ export default {
     };
   },
   beforeMount() {
-    this.getTodos();
+    this.$store.dispatch('fetchCharacters')
   },
   methods: {
     getTodos() {
@@ -62,13 +62,13 @@ export default {
       axios
 
         .get("https://rickandmortyapi.com/api/character/?page=" + this.page)
-        .then((response) => this.characters.push(...response.data.results));
+        .then((response) => this.$store.state.characters.push(...response.data.results));
       console.log(this.characters);
     },
   },
   computed: {
     searchCharacter() {
-      return this.characters.filter((character) => {
+      return this.$store.getters.getCharacters.filter((character) => {
         return (
           character.name.toLowerCase().includes(this.search.toLowerCase()) &&
           character.status.toLowerCase().includes(this.status.toLowerCase())

@@ -9,4 +9,4 @@ import router from "./router";
 
 
 
-createApp(App).use(store, axios).use(router).mount("#app");
+createApp(App).use( store,axios).use(router).mount("#app");
