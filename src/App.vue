@@ -1,14 +1,19 @@
 <template>
-  <Header></Header>
-  <CharList></CharList>
+  <Header />
+
+
+  <router-view></router-view>
 </template>
 
 <script>
-import Header from "./components/Header/Header";
-import CharList from "./components/Body/CharList";
+
+
+
+  import Header from "./components/Header/Header";
+
 export default {
   name: "App",
-  components: { CharList, Header },
+  components: { Header },
 };
 </script>
 

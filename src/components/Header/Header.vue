@@ -1,10 +1,10 @@
 <template>
   <header>
-    <img
+    <router-link to="/"> <img
       class="logo_name"
       src="../../assets/logoName.png"
       alt="Rick and Morty Logo"
-    />
+    /></router-link>
   </header>
 </template>
 

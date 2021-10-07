@@ -1,12 +1,12 @@
 <template>
   <main>
     <div class="search-form">
-      <input type="text" placeholder="Поиск..." v-model="search" />
-      <select name="" id="">
-        <option value="" disabled selected>Select yout option</option>
-        <option value="">alive</option>
-        <option value="">dead</option>
-        <option value="">unknown</option>
+      <input type="text" placeholder="Search" v-model="search" />
+      <select v-model="status" name="select">
+        <option value="" selected>All</option>
+        <option value="alive">Alive</option>
+        <option value="dead">Dead</option>
+        <option value="unknown">Unknown</option>
       </select>
     </div>
     <div class="all-characters">
@@ -18,13 +18,13 @@
         <div class="character_info">
           <img class="character_image" :src="character.image" alt="" />
           <div class="character_name">
-            <a href="">{{ character.name }}</a>
+            <router-link to="/character">{{ character.name }}</router-link>
           </div>
+
           <div class="character_add-info">
             <span>{{ character.gender }}</span>
             <span>{{ character.status }}</span>
             <span>{{ character.species }}</span>
-            <span>{{ character.episode }}</span>
           </div>
         </div>
       </div>
@@ -45,6 +45,7 @@ export default {
       search: "",
       characters: [],
       page: 1,
+      status: "",
     };
   },
   beforeMount() {
@@ -68,7 +69,10 @@ export default {
   computed: {
     searchCharacter() {
       return this.characters.filter((character) => {
-        return character.name.toLowerCase().includes(this.search.toLowerCase());
+        return (
+          character.name.toLowerCase().includes(this.search.toLowerCase()) &&
+          character.status.toLowerCase().includes(this.status.toLowerCase())
+        );
       });
     },
   },
