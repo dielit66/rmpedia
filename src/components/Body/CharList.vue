@@ -52,11 +52,6 @@ export default {
     this.$store.dispatch('fetchCharacters')
   },
   methods: {
-    getTodos() {
-      axios
-        .get("https://rickandmortyapi.com/api/character/")
-        .then((response) => (this.characters = response.data.results));
-    },
     loadMore() {
       this.page++;
       axios
