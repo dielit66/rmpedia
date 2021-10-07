@@ -18,7 +18,9 @@
         <div class="character_info">
           <img class="character_image" :src="character.image" alt="" />
           <div class="character_name">
-            <router-link :to="{ path: '/character'+ '/'+ character.id}">{{ character.name }}</router-link>
+            <router-link :to="{ path: '/character' + '/' + character.id }">{{
+              character.name
+            }}</router-link>
           </div>
 
           <div class="character_add-info">
@@ -36,29 +38,21 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "CharList",
   data() {
     return {
       search: "",
       characters: [],
-      page: 1,
       status: "",
     };
   },
   beforeMount() {
-    this.$store.dispatch('fetchCharacters')
+    this.$store.dispatch("fetchCharacters");
   },
   methods: {
     loadMore() {
-      this.page++;
-      axios
-
-        .get("https://rickandmortyapi.com/api/character/?page=" + this.page)
-        .then((response) => this.$store.state.characters.push(...response.data.results));
-      console.log(this.characters);
+      this.$store.dispatch("fetchMoreCharacters");
     },
   },
   computed: {
@@ -157,6 +151,5 @@ main {
   border-radius: 8px;
   font-size: 20px;
   border: solid 4px rgba(0, 227, 255, 0.68);
-
 }
 </style>
